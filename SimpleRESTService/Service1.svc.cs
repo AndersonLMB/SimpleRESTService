@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.ServiceModel.Activation;
 
 namespace SimpleRESTService
 {
@@ -30,6 +31,8 @@ namespace SimpleRESTService
     //        return composite;
     //    }
     //}
+
+    [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Required)]
     public class Service1 : IService
     {
         public string EchoWithGet(string s)
