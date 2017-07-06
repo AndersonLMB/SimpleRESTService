@@ -8,6 +8,7 @@ using System.ServiceModel.Activation;
 using Dapper;
 using MySql.Data;
 using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace EmployeeService
 {
@@ -46,7 +47,6 @@ namespace EmployeeService
         public string GetInfo(string id, string type)
         {
             refreshData();
-
             User user = new User();
             MySqlConnection connenction = new MySqlConnection();
             connenction.ConnectionString = "Server=localhost;Database=test;Uid=lmb;Pwd=1234;";
@@ -62,13 +62,17 @@ namespace EmployeeService
                 Console.WriteLine(ex.ToString());
             }
             return "";
-
-
-
-
-
         }
 
+        public List<User> GetAll()
+        {
+            return this.users;
+        }
+
+        //public string GetAll()
+        //{
+        //    refreshData();
+        //}
     }
 
 
