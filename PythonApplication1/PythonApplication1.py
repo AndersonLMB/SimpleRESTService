@@ -1,6 +1,8 @@
 import urllib2
 import StringIO
-from BeautifulSoup import BeautifulSoup
+from bs4 import BeautifulSoup
+import sys
+import csv
 
 url = "http://www.stats.gov.cn/tjsj/tjbz/tjyqhdmhcxhfdm/2016/"
 request = urllib2.Request(url)
@@ -14,3 +16,9 @@ try:
 except Exception,e: 
 	print e.reason
 
+content=content.decode("GB2312","lxml")
+#soup = BeautifulSoup(content)
+soup = BeautifulSoup(content)
+tds = soup.findAll("td")
+for td in tds:
+    print td

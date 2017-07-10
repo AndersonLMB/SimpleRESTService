@@ -78,6 +78,7 @@
     </Content>
     <Content Include="EmpInfoService.svc" />
     <Content Include="Global.asax" />
+    <Content Include="UserInfoService.svc" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

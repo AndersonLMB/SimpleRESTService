@@ -14,7 +14,7 @@ namespace EmployeeService
 
         protected void Application_Start(object sender, EventArgs e)
         {
-            RouteTable.Routes.Add(new ServiceRoute("MyService", new WebServiceHostFactory(), typeof(EmpInfoService)));
+            //RouteTable.Routes.Add(new ServiceRoute("MyService", new WebServiceHostFactory(), typeof(EmpInfoService)));
         }
 
         protected void Session_Start(object sender, EventArgs e)
