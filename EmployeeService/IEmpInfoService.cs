@@ -17,12 +17,12 @@ namespace EmployeeService
         [WebInvoke
          (
             Method = "GET",
-            UriTemplate = "EmpInfoDetail/{EmpId}",
+            UriTemplate = "EmpInfoDetail/{EmpId}?howmuch={money}&currency={currency}",
             RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Wrapped
             )]
-        string GetEmpSalary(string EmpId);
+        string GetEmpSalary(string EmpId, string money, string currency);
     }
     [ServiceContract]
     public interface IUserInfoService
@@ -39,16 +39,28 @@ namespace EmployeeService
         [OperationContract]
         [WebInvoke(Method = "GET", UriTemplate = "UserInfo/all", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped)]
         List<User> GetAll();
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", UriTemplate = "UserInfo/AddUser?id={id}&name={name}&password={password}",
+            RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped)]
+        string AddUser(string id, string name, string password);
     }
 
+    [Serializable]
     [DataContract]
     public class User
     {
-        [DataMember]
+        [DataMember(Name = "id")]
         public string id { get; set; }
-        [DataMember]
+        [DataMember(Name = "name")]
         public string name { get; set; }
-        [DataMember]
+        [DataMember(Name = "password")]
         public string password { get; set; }
+
+        public override string ToString()
+        {
+            return id.ToString() + " " + name.ToString() + " " + password.ToString();
+            //return base.ToString();
+        }
     }
 }

@@ -17,9 +17,9 @@ namespace EmployeeService
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
     public class EmpInfoService : IEmpInfoService
     {
-        public string GetEmpSalary(string EmpId)
+        public string GetEmpSalary(string EmpId, string money, string currency)
         {
-            return "Salary of " + EmpId + " is " + 2000;
+            return "Salary of " + EmpId + " is " + currency + " " + money;
         }
     }
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
@@ -67,6 +67,30 @@ namespace EmployeeService
         public List<User> GetAll()
         {
             return this.users;
+        }
+
+        public string AddUser(string id, string name, string password)
+        {
+            refreshData();
+            //User user = new User();
+            MySqlConnection connenction = new MySqlConnection();
+            connenction.ConnectionString = "Server=localhost;Database=test;Uid=lmb;Pwd=1234;";
+            string sqlstring = "insert into test.table1(test.table1.id, test.table1.name, test.table1.password) values('" + id + "','" + name + "','" + password + "')";
+            var cmd = connenction.CreateCommand();
+            cmd.CommandText = sqlstring;
+            connenction.Open();
+            int a = cmd.ExecuteNonQuery();
+            connenction.Execute(sqlstring);
+            if (a > 0)
+            {
+                return "done";
+            }
+            else
+            {
+                return "failed";
+            }
+
+            throw new NotImplementedException();
         }
 
         //public string GetAll()

@@ -6,6 +6,7 @@ using System.Web.Security;
 using System.Web.SessionState;
 using System.Web.Routing;
 using System.ServiceModel.Activation;
+using System.ServiceModel.Web;
 
 namespace EmployeeService
 {
@@ -14,7 +15,9 @@ namespace EmployeeService
 
         protected void Application_Start(object sender, EventArgs e)
         {
+            //RegisterRoutes(RouteTable.Routes);
             //RouteTable.Routes.Add(new ServiceRoute("MyService", new WebServiceHostFactory(), typeof(EmpInfoService)));
+
         }
 
         protected void Session_Start(object sender, EventArgs e)
@@ -45,6 +48,10 @@ namespace EmployeeService
         protected void Application_End(object sender, EventArgs e)
         {
 
+        }
+        public void RegisterRoutes(RouteCollection routes)
+        {
+            routes.Add(new ServiceRoute("/MyEmpService", new WebServiceHostFactory(), typeof(EmployeeService.EmpInfoService)));
         }
     }
 }

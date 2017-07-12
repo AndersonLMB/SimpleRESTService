@@ -79,6 +79,7 @@
     <Content Include="EmpInfoService.svc" />
     <Content Include="Global.asax" />
     <Content Include="UserInfoService.svc" />
+    <Content Include="UserPost.svc" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -91,7 +92,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="IEmpInfoService.cs" />
+    <Compile Include="IUserPost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserPost.svc.cs">
+      <DependentUpon>UserPost.svc</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
